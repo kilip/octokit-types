@@ -1,20 +1,22 @@
-import type { EndpointInterface } from "./EndpointInterface";
-import type { OctokitResponse } from "./OctokitResponse";
-import type { RequestParameters } from "./RequestParameters";
-import type { Route } from "./Route";
+import type { EndpointInterface } from './EndpointInterface';
+import type { GeneratedEndpoints } from './GeneratedEndpoints';
+import type { OctokitResponse } from './OctokitResponse';
+import type { RequestParameters } from './RequestParameters';
+import type { Route } from './Route';
 
-import type { Endpoints } from "./generated/Endpoints";
-
-export interface RequestInterface<D extends object = object> {
+export interface RequestInterface<
+  D extends object = object,
+  Endpoints extends GeneratedEndpoints = {},
+> {
   /**
    * Sends a request based on endpoint options
    *
    * @param {object} endpoint Must set `method` and `url`. Plus URL, query or body parameters, as well as `headers`, `mediaType.{format|previews}`, `request`, or `baseUrl`.
    */
   <T = any, O extends RequestParameters = RequestParameters>(
-    options: O & { method?: string } & ("url" extends keyof D
+    options: O & { method?: string } & ('url' extends keyof D
         ? { url?: string }
-        : { url: string }),
+        : { url: string })
   ): Promise<OctokitResponse<T>>;
 
   /**
@@ -26,17 +28,17 @@ export interface RequestInterface<D extends object = object> {
   <R extends Route>(
     route: keyof Endpoints | R,
     options?: R extends keyof Endpoints
-      ? Endpoints[R]["parameters"] & RequestParameters
-      : RequestParameters,
+      ? Endpoints[R]['parameters'] & RequestParameters
+      : RequestParameters
   ): R extends keyof Endpoints
-    ? Promise<Endpoints[R]["response"]>
+    ? Promise<Endpoints[R]['response']>
     : Promise<OctokitResponse<any>>;
 
   /**
    * Returns a new `request` with updated route and parameters
    */
   defaults: <O extends RequestParameters = RequestParameters>(
-    newDefaults: O,
+    newDefaults: O
   ) => RequestInterface<D & O>;
 
   /**
