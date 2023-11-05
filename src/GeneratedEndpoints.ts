@@ -1,6 +1,6 @@
-import type { RequestHeaders } from './RequestHeaders'
-import type { RequestParameters } from './RequestParameters'
-import type { Url } from './Url'
+import type { RequestHeaders } from './RequestHeaders';
+import type { RequestParameters } from './RequestParameters';
+import type { Url } from './Url';
 
 export type MethodsMap = {
   delete: 'DELETE';
@@ -10,7 +10,7 @@ export type MethodsMap = {
   put: 'PUT';
 };
 
-export type Operation = {
+export type EndpointOperationType = {
   parameters: RequestParameters;
   request: {
     method: MethodsMap;
@@ -19,4 +19,7 @@ export type Operation = {
   };
   response: any;
 };
-export type GeneratedEndpoints = { [key: string]: Operation };
+
+export type GeneratedEndpoints = {
+  [key: string]: EndpointOperationType;
+};

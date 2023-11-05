@@ -6,7 +6,7 @@ import type { Route } from './Route';
 
 export interface EndpointInterface<
   D extends object = object,
-  Endpoints extends GeneratedEndpoints = {},
+  Endpoints extends { [key: string]: GeneratedEndpoints } = {},
 > {
   /**
    * Transforms a GitHub REST API endpoint into generic request options
