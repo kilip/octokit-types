@@ -1,13 +1,10 @@
 {
   "name": "@doyolabs/octokit-types",
-  "version": "0.0.0-development",
+  "version": "v12.1.1-patch-1",
   "publishConfig": {
     "access": "public"
   },
   "description": "Shared TypeScript definitions for Octokit projects",
-  "dependencies": {
-    "@octokit/openapi-types": "^19.0.2"
-  },
   "scripts": {
     "build": "node scripts/build.mjs && tsc -p tsconfig.json",
     "docs": "typedoc --readme none --out docs src/index.ts && touch docs/.nojekyll",
