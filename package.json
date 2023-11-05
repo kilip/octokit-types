@@ -1,6 +1,6 @@
 {
   "name": "@doyolabs/octokit-types",
-  "version": "v12.1.1-patch-1",
+  "version": "v12.1.1-patch-2",
   "publishConfig": {
     "access": "public"
   },
